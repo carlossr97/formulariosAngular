@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path:'template',
     loadChildren:()=> import('../app/template/template.module').then(m => m.TemplateModule)
+  },
+  {
+    path:'**',
+    redirectTo:'template'
   }
 
 ];
