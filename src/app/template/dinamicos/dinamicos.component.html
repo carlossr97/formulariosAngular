@@ -1,47 +1,55 @@
 <h2>Template: <small>Dinamicos</small></h2>
 <hr>
 
-<form (submit)="guardar()" #formularioDinamico="ngForm" >
+<form (submit)="guardar()" #formularioDinamico="ngForm">
     <!-- Nombre -->
     <div class="row">
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" placeholder="Nombre de la persona" name="nombre" [ngModel]="persona.nombre" required> 
+            <input type="text" class="form-control" placeholder="Nombre de la persona" name="nombre" [ngModel]="persona.nombre" required>
             <span *ngIf="formularioDinamico?.invalid && formularioDinamico?.touched" class="form-text text-danger">Este campo es obligatorio.</span>
         </div>
     </div>
 
-   
 
-      <!-- Agregar -->
-      <div class="row">
+
+    <!-- Agregar -->
+    <div class="row">
         <label class="col-sm-3 col-form-label">Agregar</label>
         <div class="col-sm-9">
             <div class="input-group mb-3 ">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"  name="favoritos" ngModel >
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="guardar()">Button</button>
-                
-              </div> 
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" name="favoritos" ngModel>
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="guardar()">Agregar</button>
+
+            </div>
         </div>
-      </div>
+    </div>
 
 
-      <div class="row">
+    <div class="row">
         <label class="col-sm-3 col-form-label">Favoritos</label>
-      </div>
+    </div>
     <div *ngFor="let item of persona.favoritos; let i = index" class="row">
         <label class="col-sm-3 col-form-label"></label>
         <div class="col-sm-9">
-                <div class="input-group mb-3">
-                    <input  type="text" class="form-control" [placeholder]="item" name="items{{i}}" [(ngModel)]="item.nombre"  aria-label="Recipient's username" aria-describedby="button-addon2">
-                </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [placeholder]="item" name="form_{{i}}" [(ngModel)]="item.nombre" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-danger float-end" type="button" (click)="borrar(i)" [disabled]="formularioDinamico?.invalid">Borrar</button>
+
+            </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12 p-4">
-             <button class="btn btn-primary float-end" type="submit" [disabled]="formularioDinamico?.invalid" >Guardar</button>
-         </div>
-</div>
+            <button class="btn btn-primary float-end" type="submit" [disabled]="formularioDinamico?.invalid">Guardar</button>
+
+        </div>
+        <div class="col-sm-12 p-4">
+            <pre>{{persona | json}}</pre>
+        </div>
+
+
+    </div>
 
 </form>

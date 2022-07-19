@@ -5,6 +5,11 @@ import { Menu } from 'src/app/interfaces/menu';
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
   styles: [
+    `
+    li{
+      cursor:pointer;
+    }
+    `
   ]
 })
 export class SidemenuComponent implements OnInit {
