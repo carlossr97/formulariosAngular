@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -9,14 +9,31 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class BasicosComponent implements OnInit {
 
-  constructor() { }
+  
+  // miFormulario: FormGroup = new FormGroup(
+  //   {
+  //     'nombre': new FormControl('RTX 4080ti'),
+  //     'precio': new FormControl(400000),
+  //     'existencias': new FormControl('10') 
+      
+  //   })
 
-  miFormulario: FormGroup = new FormGroup(
-    {
-      'nombre': new FormControl('RTX 4080ti') 
-    })
+  miFormulario: FormGroup = this.fb.group({
+    'nombre': ['', [Validators.required, Validators.minLength(3)]],
+    'precio': [, [Validators.required, Validators.minLength(3)]],
+    'existencias': ['', [Validators.required, Validators.minLength(3)]] 
+  })
+
+
+
+    constructor(private fb:FormBuilder) { }
+
 
   ngOnInit(): void {
+  }
+
+  campoEsValido( campo:string ){
+    return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched
   }
 
 }

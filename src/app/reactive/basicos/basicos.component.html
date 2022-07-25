@@ -11,7 +11,7 @@
                 </label>
                 <div class="col-sm-9">
                     <input name="producto" formControlName="nombre" type="text" class="form-control" placeholder="Nombre del producto">
-                    <span class="form-text text-danger"> Debe de tener 3 letras. </span>
+                    <span *ngIf="campoEsValido('nombre')" class="form-text text-danger"> Debe de tener 3 letras. </span>
                 </div>
             </div>
 
@@ -21,8 +21,8 @@
                   Precio
                 </label>
                 <div class="col-sm-9">
-                    <input name="precio" type="number" class="form-control" placeholder="Precio del producto">
-                    <span class="form-text text-danger">El precio debe de ser 0 o mayor. </span>
+                    <input name="precio" type="number" formControlName="precio" class="form-control" placeholder="Precio del producto">
+                    <span *ngIf="campoEsValido('precio')" class="form-text text-danger">El precio debe de ser 0 o mayor. </span>
                 </div>
             </div>
 
@@ -32,14 +32,14 @@
                   Existencias
                 </label>
                 <div class="col-sm-9">
-                    <input ngModel name="existencias" type="text" class="form-control" placeholder="Existencias del producto">
-                    <span class="form-text text-danger"> Debe de tener 3 letras. </span>
+                    <input name="existencias2" type="text" formControlName="existencias" class="form-control" placeholder="Existencias del producto">
+                    <span *ngIf="campoEsValido('existencias')" class="form-text text-danger"> Debe de tener 3 letras. </span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end" type="submit">
+                    <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">
                         Guardar
                     </button>
                 </div>
