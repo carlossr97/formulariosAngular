@@ -1,13 +1,14 @@
 <h2>Reactive: <small>Dinamicos</small></h2>
 <hr>
 
-<form>
+<form (ngSubmit)="guardar()" [formGroup]="miFormulario">
     <!-- Nombre -->
     <div class="row">
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" placeholder="Nombre de la persona" name="nombre">
-            <span class="form-text text-danger">Este campo es obligatorio.</span>
+            <input type="text" class="form-control" placeholder="Nombre de la persona" formControlName="name" name="nombre">
+            <span *ngIf="campoEsValido('name')" class="form-text text-danger"> Debe de tener 3 letras. </span>
+
         </div>
     </div>
 
@@ -18,7 +19,7 @@
         <label class="col-sm-3 col-form-label">Agregar</label>
         <div class="col-sm-9">
             <div class="input-group mb-3 ">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" name="favoritos" ngModel>
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" name="favoritos">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Agregar</button>
 
             </div>
@@ -31,9 +32,9 @@
     </div>
     <div class="row">
         <label class="col-sm-3 col-form-label"></label>
-        <div class="col-sm-9">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="form" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="col-sm-9" formArrayName="favoritos">
+            <div class="input-group mb-3" *ngFor="let favorito ">
+                <input type=" text " class="form-control " name="form " aria-label="Recipient 's username" aria-describedby="button-addon2">
                 <button class="btn btn-danger float-end" type="button">Borrar</button>
 
             </div>
@@ -46,6 +47,11 @@
 
         </div>
         <div class="col-sm-12 p-4">
+            <span>Value</span>
+            <pre>{{miFormulario.value | json}}</pre>
+            <br>
+            <span>Precio</span>
+            <pre>{{miFormulario.controls['name '].errors | json}}</pre>
             <!-- <pre>{{persona | json}}</pre> -->
         </div>
 

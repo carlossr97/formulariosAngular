@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col">
 
-        <form [formGroup]="miFormulario">
+        <form (ngSubmit)="guardar()" [formGroup]="miFormulario">
             <!-- Campo de producto -->
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-laber">
@@ -39,7 +39,7 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">
+                    <button class="btn btn-primary float-end" type="submit">
                         Guardar
                     </button>
                 </div>
@@ -59,8 +59,8 @@
                 <span>Value</span>
                 <pre>{{miFormulario.value | json}}</pre>
                 <br>
-                <span>CustomDirective</span>
-                <!-- <pre>{{miFormulario.controls?''.errors?}}</pre> -->
+                <span>Precio</span>
+                <pre>{{miFormulario.controls['precio'].errors | json}}</pre>
             </div>
         </div>
 

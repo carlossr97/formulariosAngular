@@ -20,7 +20,7 @@ export class BasicosComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
     'nombre': ['', [Validators.required, Validators.minLength(3)]],
-    'precio': [, [Validators.required, Validators.minLength(3)]],
+    'precio': [, [Validators.required, Validators.minLength(3), Validators.min(0)]],
     'existencias': ['', [Validators.required, Validators.minLength(3)]] 
   })
 
@@ -36,4 +36,15 @@ export class BasicosComponent implements OnInit {
     return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched
   }
 
+  guardar(){
+
+    
+    if(this.miFormulario.invalid){
+      this.miFormulario.markAllAsTouched();
+      console.log("NO valido")
+      return
+    }
+    this.miFormulario.reset();
+    console.log("es valido")
+  }
 }
