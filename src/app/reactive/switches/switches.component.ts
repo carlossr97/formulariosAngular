@@ -10,10 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SwitchesComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
-    genero: ['M',Validators.required]
+    genero: ['M',Validators.required],
+    notificaciones:  [true,Validators.required],
+    condiciones: [false,Validators.requiredTrue]
   });
 
-  pesona = {
+  persona = {
     genero: 'F',
     notificacione: true
   }
@@ -24,4 +26,11 @@ export class SwitchesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  guardar(){
+    const formValue = {
+      ...this.miFormulario.value
+    }
+   delete formValue.condiciones;
+    this.persona = formValue
+  }
 }
